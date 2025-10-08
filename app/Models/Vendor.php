@@ -4,24 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class Vendor extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'vendors';
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
      */
     protected $fillable = [
+        // ✅ Old columns
         'vendor_name',
         'company',
         'phone_number',
@@ -30,5 +25,19 @@ class Vendor extends Model
         'hall',
         'floor',
         'seat',
+
+        // ✅ New API columns
+        'full_name',
+        'library_name',
+        'mobile_number',
+        'password',
+    ];
+
+    /**
+     * Hide sensitive fields
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 }
