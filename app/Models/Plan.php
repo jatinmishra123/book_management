@@ -13,6 +13,11 @@ class Plan extends Model
         'plan'
     ];
 
+    // Plan ko JSON array ke रूप में cast karna
+    protected $casts = [
+        'plan' => 'array',
+    ];
+
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
